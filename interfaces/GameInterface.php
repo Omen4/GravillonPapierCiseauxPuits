@@ -1,5 +1,5 @@
 <?php
-namespace GravillonPapierCiseauxPuits\interfaces;
+namespace interfaces;
 interface GameInterface
 {
     public function getPlayer1();

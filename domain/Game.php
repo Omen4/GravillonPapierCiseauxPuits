@@ -1,12 +1,8 @@
 <?php
 
-use GravillonPapierCiseauxPuits\domain\Move;
-use GravillonPapierCiseauxPuits\domain\Player;
-use GravillonPapierCiseauxPuits\domain\Round;
-use GravillonPapierCiseauxPuits\domain\RoundResult;
-use GravillonPapierCiseauxPuits\interfaces\GameInterface;
+namespace domain;
 
-require_once 'interfaces/GameInterface.php';
+use interfaces\GameInterface;
 
 class Game implements GameInterface
 {

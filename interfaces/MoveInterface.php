@@ -1,5 +1,5 @@
 <?php
-namespace GravillonPapierCiseauxPuits\interfaces;
+namespace interfaces;
 interface MoveInterface
 {
     public function getValue();

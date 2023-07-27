@@ -4,7 +4,8 @@
   },
     "autoload": {
         "psr-4": {
-            "app\\": "domain/"
+          "GravillonPapierCiseauxPuits/domain\\": "domain/",
+          "GravillonPapierCiseauxPuits/interfaces\\": "interfaces/"
         }
     }
 }

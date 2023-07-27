@@ -1,7 +1,7 @@
 <?php
-namespace GravillonPapierCiseauxPuits\domain;
+namespace domain;
 
-use GravillonPapierCiseauxPuits\interfaces\PlayerInterface;
+use interfaces\PlayerInterface;
 
 class Player implements PlayerInterface
 {

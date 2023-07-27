@@ -1,7 +1,7 @@
 <?php
-namespace GravillonPapierCiseauxPuits\domain;
+namespace domain;
 
-use GravillonPapierCiseauxPuits\interfaces\MoveInterface;
+use interfaces\MoveInterface;
 
 class Move implements MoveInterface
 {

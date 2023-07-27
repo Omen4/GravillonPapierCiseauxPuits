@@ -1,7 +1,7 @@
 <?php
-namespace GravillonPapierCiseauxPuits\domain;
+namespace domain;
 
-use GravillonPapierCiseauxPuits\interfaces\RoundResultInterface;
+use interfaces\RoundResultInterface;
 
 class RoundResult implements RoundResultInterface
 {
