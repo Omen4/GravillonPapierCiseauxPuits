@@ -3,6 +3,8 @@
 namespace domain;
 
 use interfaces\GameInterface;
+use interfaces\MoveInterface;
+use interfaces\RoundResultInterface;
 use repositories\GameRepository;
 
 class Game implements GameInterface
@@ -71,48 +73,46 @@ class Game implements GameInterface
         }
     }
 
-    private function calculateRoundResult(MoveInterface $player1Move, MoveInterface $player2Move): RoundResultInterface
+    private function calculateRoundResult( $player1Move,  $player2Move): RoundResultInterface
     {
         switch ($player1Move->getValue()) {
-            case Move::PIERRE:
+            case MoveInterface::PIERRE:
                 switch ($player2Move->getValue()) {
-                    case Move::PIERRE:
+                    case MoveInterface::PIERRE:
                         return new RoundResult(RoundResult::TIE);
-                    case Move::FEUILLE:
+                    case MoveInterface::FEUILLE:
                         return new RoundResult(RoundResult::PLAYER2_WINS);
-                    case Move::CISEAUX:
+                    case MoveInterface::CISEAUX:
                         return new RoundResult(RoundResult::PLAYER1_WINS);
                 }
                 break;
 
-            case Move::FEUILLE:
+            case MoveInterface::FEUILLE:
                 switch ($player2Move->getValue()) {
-                    case Move::PIERRE:
+                    case MoveInterface::PIERRE:
                         return new RoundResult(RoundResult::PLAYER1_WINS);
-                    case Move::FEUILLE:
+                    case MoveInterface::FEUILLE:
                         return new RoundResult(RoundResult::TIE);
-                    case Move::CISEAUX:
+                    case MoveInterface::CISEAUX:
                         return new RoundResult(RoundResult::PLAYER2_WINS);
                 }
                 break;
 
-            case Move::CISEAUX:
+            case MoveInterface::CISEAUX:
                 switch ($player2Move->getValue()) {
-                    case Move::PIERRE:
+                    case MoveInterface::PIERRE:
                         return new RoundResult(RoundResult::PLAYER2_WINS);
-                    case Move::FEUILLE:
+                    case MoveInterface::FEUILLE:
                         return new RoundResult(RoundResult::PLAYER1_WINS);
-                    case Move::CISEAUX:
+                    case MoveInterface::CISEAUX:
                         return new RoundResult(RoundResult::TIE);
                 }
                 break;
         }
     }
-
-
-
-    public function simulateRandomMove()
+    public function getRandomMove()
     {
-        // TODO: Implement simulateRandomMove() method.
+        $moves = ['Pierre', 'Feuille', 'Ciseaux'];
+        return new Move($moves[array_rand($moves)]);
     }
 }

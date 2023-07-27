@@ -4,9 +4,9 @@
   },
   "autoload": {
     "psr-4": {
-      "domain\\": "domain/",
-      "interfaces\\": "interfaces/",
-      "": "/"
+      "domain\\": "src/domain/",
+      "interfaces\\": "src/interfaces/",
+      "repositories\\": "src/repositories"
     }
   }
 }

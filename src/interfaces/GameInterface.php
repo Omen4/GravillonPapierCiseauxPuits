@@ -7,7 +7,7 @@ interface GameInterface
 
     public function getPlayer2();
 
-    public function simulateRandomMove();
+    public function getRandomMove();
 
     public function playRound($player1Move, $player2Move);
 

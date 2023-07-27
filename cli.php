@@ -1,4 +1,5 @@
 <?php
+require_once 'vendor/autoload.php';
 
 use domain\Game;
 use domain\Move;
@@ -33,7 +34,7 @@ function playGame()
         echo "\nManche $roundNumber\n";
 
         $userMove = getValidMove();
-        $computerMove = getRandomMove();
+        $computerMove = $game->getRandomMove();
 
         $game->playRound($userMove, $computerMove);
 
@@ -60,12 +61,6 @@ function playGame()
     } else {
         echo "La partie s'est terminée par une égalité !\n";
     }
-}
-
-function getRandomMove()
-{
-    $moves = ['Pierre', 'Feuille', 'Ciseaux'];
-    return new Move($moves[array_rand($moves)]);
 }
 
 playGame();
