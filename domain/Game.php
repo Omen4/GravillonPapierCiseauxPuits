@@ -1,41 +1,94 @@
 <?php
+namespace GravillonPapierCiseauxPuits\domain;
 
-require_once 'domain/Player.php';
-require_once 'domain/Move.php';
-require_once 'domain/RoundResult.php';
-require_once 'domain/Round.php';
-require_once 'domain/Game.php';
+use GravillonPapierCiseauxPuits\interfaces\GameInterface;
+use GravillonPapierCiseauxPuits\interfaces\MoveInterface;
+use GravillonPapierCiseauxPuits\interfaces\PlayerInterface;
 
-$player1 = new Player('Player 1');
-$player2 = new Player('Player 2');
+class Game implements GameInterface, MoveInterface, PlayerInterface
+{
+    private $player1;
+    private $player2;
+    private $player1Wins = 0;
+    private $player2Wins = 0;
+    private $rounds = [];
 
-$game = new Game($player1, $player2);
+    public function __construct(PlayerInterface $player1, PlayerInterface $player2)
+    {
+        $this->player1 = $player1;
+        $this->player2 = $player2;
+    }
 
-// Simulate a game between two fictional players
-while ($game->getWinner() === 0) {
-    $player1Move = $game->simulateRandomMove();
-    $player2Move = $game->simulateRandomMove();
-    $game->playRound($player1Move, $player2Move);
-}
+    public function getPlayer1()
+    {
+        return $this->player1;
+    }
 
-$winner = $game->getWinner();
-if ($winner === 1) {
-    echo "Player 1 wins!";
-} elseif ($winner === 2) {
-    echo "Player 2 wins!";
-} else {
-    echo "It's a tie!";
-}
+    public function getPlayer2()
+    {
+        return $this->player2;
+    }
 
-$roundsHistory = $game->getRoundsHistory();
-echo "\nRounds History:\n";
-foreach ($roundsHistory as $round) {
-    echo $round->getPlayer1Move()->getValue() . " vs. " . $round->getPlayer2Move()->getValue() . " => ";
-    if ($round->getResult()->getValue() === 1) {
-        echo "Player 1 wins\n";
-    } elseif ($round->getResult()->getValue() === 2) {
-        echo "Player 2 wins\n";
-    } else {
-        echo "Tie\n";
+    public function simulateRandomMove()
+    {
+        $moves = ['Pierre', 'Feuille', 'Ciseaux'];
+        return new Move($moves[array_rand($moves)]);
+    }
+
+    public function playRound(MoveInterface $player1Move, MoveInterface $player2Move)
+    {
+        $result = $this->determineRoundResult($player1Move, $player2Move);
+        $this->rounds[] = new Round($player1Move, $player2Move, $result);
+
+        if ($result->getValue() === 1) {
+            $this->player1Wins++;
+        } elseif ($result->getValue() === 2) {
+            $this->player2Wins++;
+        }
+    }
+
+    private function determineRoundResult(MoveInterface $player1Move, MoveInterface $player2Move)
+    {
+        if ($player1Move->getValue() === $player2Move->getValue()) {
+            return new RoundResult(0); // Tie
+        }
+
+        // Player 1 wins
+        if (
+            ($player1Move->getValue() === 'Pierre' && $player2Move->getValue() === 'Ciseaux') ||
+            ($player1Move->getValue() === 'Feuille' && $player2Move->getValue() === 'Pierre') ||
+            ($player1Move->getValue() === 'Ciseaux' && $player2Move->getValue() === 'Feuille')
+        ) {
+            return new RoundResult(1);
+        }
+
+        // Player 2 wins
+        return new RoundResult(2);
+    }
+
+    public function getWinner()
+    {
+        if ($this->player1Wins >= 2) {
+            return 1;
+        } elseif ($this->player2Wins >= 2) {
+            return 2;
+        }
+
+        return 0;
+    }
+
+    public function getRoundsHistory()
+    {
+        return $this->rounds;
+    }
+
+    public function getValue()
+    {
+        // TODO: Implement getValue() method.
+    }
+
+    public function getName()
+    {
+        // TODO: Implement getName() method.
     }
 }

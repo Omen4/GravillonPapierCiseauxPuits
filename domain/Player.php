@@ -1,6 +1,9 @@
 <?php
+namespace GravillonPapierCiseauxPuits\domain;
 
-class Player
+use GravillonPapierCiseauxPuits\interfaces\PlayerInterface;
+
+class Player implements PlayerInterface
 {
     private $name;
 

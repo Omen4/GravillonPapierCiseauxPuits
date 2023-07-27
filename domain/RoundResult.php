@@ -1,6 +1,9 @@
 <?php
+namespace GravillonPapierCiseauxPuits\domain;
 
-class RoundResult
+use GravillonPapierCiseauxPuits\interfaces\RoundResultInterface;
+
+class RoundResult implements RoundResultInterface
 {
     private $value;
 

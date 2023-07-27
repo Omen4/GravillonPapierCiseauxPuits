@@ -1,6 +1,9 @@
 <?php
+namespace GravillonPapierCiseauxPuits\domain;
 
-class Move
+use GravillonPapierCiseauxPuits\interfaces\MoveInterface;
+
+class Move implements MoveInterface
 {
     private $value;
 

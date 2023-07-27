@@ -1,6 +1,9 @@
 <?php
+namespace GravillonPapierCiseauxPuits\domain;
 
-class Round
+use GravillonPapierCiseauxPuits\interfaces\RoundInterface;
+
+class Round implements RoundInterface
 {
     private $player1Move;
     private $player2Move;
