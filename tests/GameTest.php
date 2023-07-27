@@ -1,9 +1,9 @@
 <?php
 
-use domain\Game;
 use domain\Move;
 use domain\Player;
 use PHPUnit\Framework\TestCase;
+use services\Game;
 
 class GameTest extends TestCase
 {

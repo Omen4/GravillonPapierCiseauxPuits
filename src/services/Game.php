@@ -1,7 +1,11 @@
 <?php
 
-namespace domain;
+namespace services;
 
+use domain\Move;
+use domain\Player;
+use domain\Round;
+use domain\RoundResult;
 use interfaces\GameInterface;
 use interfaces\MoveInterface;
 use interfaces\RoundResultInterface;
@@ -37,7 +41,7 @@ class Game implements GameInterface
         $round = new Round($player1Move, $player2Move, $result);
         $this->roundsHistory[] = $round;
 
-        //Save kikis
+        //Save round of kikis
         $this->repository->saveRoundResult(
             $player1Move->getValue(),
             $player2Move->getValue(),

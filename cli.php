@@ -1,10 +1,10 @@
 <?php
 require_once 'vendor/autoload.php';
 
-use domain\Game;
 use domain\Move;
 use domain\Player;
 use repositories\GameRepository;
+use services\Game;
 
 function getValidMove(): Move
 {
@@ -25,7 +25,7 @@ function playGame()
     echo "Bienvenue dans le jeu Pierre, Feuille, Ciseaux !\n";
 
     $player1 = new Player('Joueur');
-    $player2 = new Player('Adversaire fictif');
+    $player2 = new Player('HAL');
     $repository = new GameRepository('game_results.txt');
     $game = new Game($player1, $player2, $repository);
 
@@ -39,13 +39,13 @@ function playGame()
         $game->playRound($userMove, $computerMove);
 
         echo "Vous avez choisi : " . $userMove->getValue() . "\n";
-        echo "Adversaire fictif a choisi : " . $computerMove->getValue() . "\n";
+        echo "HAL a choisi : " . $computerMove->getValue() . "\n";
 
         $result = $game->getRoundsHistory()[count($game->getRoundsHistory()) - 1]->getResult()->getValue();
         if ($result === 1) {
             echo "Vous gagnez cette manche !\n";
         } elseif ($result === 2) {
-            echo "Adversaire fictif gagne cette manche !\n";
+            echo "HAL gagne cette manche !\n";
         } else {
             echo "C'est une égalité !\n";
         }
@@ -54,10 +54,11 @@ function playGame()
     }
 
     $winner = $game->getWinner();
+    $repository->saveGameResult($winner);
     if ($winner === 1) {
         echo "Vous avez gagné la partie ! Félicitations !\n";
     } elseif ($winner === 2) {
-        echo "Adversaire fictif a gagné la partie ! Essayez encore !\n";
+        echo "HAL a gagné la partie ! Essayez encore !\n";
     } else {
         echo "La partie s'est terminée par une égalité !\n";
     }

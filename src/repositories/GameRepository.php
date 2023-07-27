@@ -13,7 +13,7 @@ class GameRepository
 
     public function saveRoundResult(string $player1Move, string $player2Move, int $result): void
     {
-        $data = "$player1Move vs. $player2Move => $result\n";
+        $data = "P1: $player1Move vs P2: $player2Move => $result\n";
         file_put_contents($this->filePath, $data, FILE_APPEND);
     }
 

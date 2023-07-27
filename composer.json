@@ -6,7 +6,8 @@
     "psr-4": {
       "domain\\": "src/domain/",
       "interfaces\\": "src/interfaces/",
-      "repositories\\": "src/repositories"
+      "repositories\\": "src/repositories",
+      "services\\": "src/services"
     }
   }
 }
