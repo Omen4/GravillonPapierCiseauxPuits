@@ -10,6 +10,7 @@ use interfaces\GameInterface;
 use interfaces\MoveInterface;
 use interfaces\RoundResultInterface;
 use repositories\GameRepository;
+use services\ASCIIMoves;
 
 class Game implements GameInterface
 {

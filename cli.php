@@ -5,6 +5,7 @@ use domain\Move;
 use domain\Player;
 use repositories\GameRepository;
 use services\Game;
+use services\ASCIIMoves;
 
 function getValidMove(): Move
 {
@@ -28,6 +29,7 @@ function playGame()
     $player2 = new Player('HAL');
     $repository = new GameRepository('game_results.txt');
     $game = new Game($player1, $player2, $repository);
+    $asciiMoves = new ASCIIMoves();
 
     $roundNumber = 1;
     while ($game->getWinner() === 0) {
@@ -38,8 +40,8 @@ function playGame()
 
         $game->playRound($userMove, $computerMove);
 
-        echo "Vous avez choisi : " . $userMove->getValue() . "\n";
-        echo "HAL a choisi : " . $computerMove->getValue() . "\n";
+        echo "\n Vous avez choisi : " . $asciiMoves->returnASCIIArt($userMove->getValue()) . "\n";
+        echo "\n HAL a choisi : " . $asciiMoves->returnASCIIArt($computerMove->getValue()) . "\n";
 
         $result = $game->getRoundsHistory()[count($game->getRoundsHistory()) - 1]->getResult()->getValue();
         if ($result === 1) {
