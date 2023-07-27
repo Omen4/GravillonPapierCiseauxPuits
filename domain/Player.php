@@ -1,4 +1,5 @@
 <?php
+
 namespace domain;
 
 use interfaces\PlayerInterface;

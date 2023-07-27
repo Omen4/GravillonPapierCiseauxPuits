@@ -1,18 +1,9 @@
 <?php
 
-require_once 'vendor/autoload.php';
-
 use domain\Game;
-use domain\Player;
-use domain\RoundResult;
 use domain\Move;
-use domain\Round;
-
-use interfaces\PlayerInterface;
-use interfaces\RoundResultInterface;
-use interfaces\RoundInterface;
-use interfaces\MoveInterface;
-use interfaces\GameInterface;
+use domain\Player;
+use repositories\GameRepository;
 
 function getValidMove(): Move
 {
@@ -34,7 +25,8 @@ function playGame()
 
     $player1 = new Player('Joueur');
     $player2 = new Player('Adversaire fictif');
-    $game = new Game($player1, $player2);
+    $repository = new GameRepository('game_results.txt');
+    $game = new Game($player1, $player2, $repository);
 
     $roundNumber = 1;
     while ($game->getWinner() === 0) {
