@@ -5,9 +5,9 @@ use GravillonPapierCiseauxPuits\interfaces\RoundInterface;
 
 class Round implements RoundInterface
 {
-    private $player1Move;
-    private $player2Move;
-    private $result;
+    private Move $player1Move;
+    private Move $player2Move;
+    private RoundResult $result;
 
     public function __construct(Move $player1Move, Move $player2Move, RoundResult $result)
     {
@@ -16,17 +16,17 @@ class Round implements RoundInterface
         $this->result = $result;
     }
 
-    public function getPlayer1Move()
+    public function getPlayer1Move(): Move
     {
         return $this->player1Move;
     }
 
-    public function getPlayer2Move()
+    public function getPlayer2Move(): Move
     {
         return $this->player2Move;
     }
 
-    public function getResult()
+    public function getResult(): RoundResult
     {
         return $this->result;
     }

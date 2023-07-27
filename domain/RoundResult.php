@@ -5,14 +5,14 @@ use GravillonPapierCiseauxPuits\interfaces\RoundResultInterface;
 
 class RoundResult implements RoundResultInterface
 {
-    private $value;
+    private RoundResult $value;
 
     public function __construct($value)
     {
         $this->value = $value;
     }
 
-    public function getValue()
+    public function getValue(): RoundResult
     {
         return $this->value;
     }

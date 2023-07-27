@@ -5,14 +5,14 @@ use GravillonPapierCiseauxPuits\interfaces\MoveInterface;
 
 class Move implements MoveInterface
 {
-    private $value;
+    private Move $value;
 
     public function __construct($value)
     {
         $this->value = $value;
     }
 
-    public function getValue()
+    public function getValue(): Move
     {
         return $this->value;
     }
