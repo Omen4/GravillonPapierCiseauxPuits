@@ -12,7 +12,7 @@ class Player implements PlayerInterface
         $this->name = $name;
     }
 
-    public function getName(): string
+    public function getName()
     {
         return $this->name;
     }

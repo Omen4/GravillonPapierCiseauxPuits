@@ -12,7 +12,7 @@ class RoundResult implements RoundResultInterface
         $this->value = $value;
     }
 
-    public function getValue(): RoundResult
+    public function getValue()
     {
         return $this->value;
     }

@@ -5,28 +5,28 @@ use interfaces\RoundInterface;
 
 class Round implements RoundInterface
 {
-    private Move $player1Move;
-    private Move $player2Move;
-    private RoundResult $result;
+    private $player1Move;
+    private $player2Move;
+    private $result;
 
-    public function __construct(Move $player1Move, Move $player2Move, RoundResult $result)
+    public function __construct($player1Move, $player2Move, $result)
     {
         $this->player1Move = $player1Move;
         $this->player2Move = $player2Move;
         $this->result = $result;
     }
 
-    public function getPlayer1Move(): Move
+    public function getPlayer1Move()
     {
         return $this->player1Move;
     }
 
-    public function getPlayer2Move(): Move
+    public function getPlayer2Move()
     {
         return $this->player2Move;
     }
 
-    public function getResult(): RoundResult
+    public function getResult()
     {
         return $this->result;
     }

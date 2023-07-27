@@ -6,35 +6,35 @@ use interfaces\GameInterface;
 
 class Game implements GameInterface
 {
-    private Player $player1;
-    private Player $player2;
+    private $player1;
+    private $player2;
     private int $player1Wins = 0;
     private int $player2Wins = 0;
     private array $rounds = [];
 
-    public function __construct(Player $player1, Player $player2)
+    public function __construct( $player1,  $player2)
     {
         $this->player1 = $player1;
         $this->player2 = $player2;
     }
 
-    public function getPlayer1(): Player
+    public function getPlayer1()
     {
         return $this->player1;
     }
 
-    public function getPlayer2(): Player
+    public function getPlayer2()
     {
         return $this->player2;
     }
 
-    public function simulateRandomMove(): Move
+    public function simulateRandomMove()
     {
         $moves = ['Pierre', 'Feuille', 'Ciseaux'];
         return new Move($moves[array_rand($moves)]);
     }
 
-    public function playRound(Move $player1Move, Move $player2Move): void
+    public function playRound( $player1Move, $player2Move): void
     {
         $result = $this->determineRoundResult($player1Move, $player2Move);
         $this->rounds[] = new Round($player1Move, $player2Move, $result);

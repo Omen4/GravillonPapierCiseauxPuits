@@ -12,7 +12,7 @@ class Move implements MoveInterface
         $this->value = $value;
     }
 
-    public function getValue(): Move
+    public function getValue()
     {
         return $this->value;
     }
